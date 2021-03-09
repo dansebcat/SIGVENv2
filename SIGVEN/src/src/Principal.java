@@ -29,7 +29,8 @@ public class Principal extends javax.swing.JFrame {
     FrameActualizarCliente actualizarCliente  = new FrameActualizarCliente();
     FrameActualizarMatPrima actualizarMatPrima = new FrameActualizarMatPrima();
     FrameActualizarProducto actualizarProducto = new FrameActualizarProducto();
-    
+    FrameCrearUsuario crearUsuario = new FrameCrearUsuario();
+    FrameActualizarContrasena actualizarContrasena = new FrameActualizarContrasena();
     
 
     public Principal() {
@@ -49,6 +50,8 @@ public class Principal extends javax.swing.JFrame {
         ventanaPrincipal.add(actualizarCliente);
         ventanaPrincipal.add(actualizarMatPrima);
         ventanaPrincipal.add(actualizarProducto);
+        ventanaPrincipal.add(crearUsuario);
+        ventanaPrincipal.add(actualizarContrasena);
     }
 
     /**
@@ -64,8 +67,8 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        btnRegistrarUsuario = new javax.swing.JMenuItem();
+        btnActualizarContrasena = new javax.swing.JMenuItem();
         btnClientes = new javax.swing.JMenu();
         btnConsultarClientes = new javax.swing.JMenuItem();
         jMenuItemRegistrarCliente = new javax.swing.JMenuItem();
@@ -110,11 +113,21 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setText("Crear Usuario");
-        jMenu1.add(jMenuItem2);
+        btnRegistrarUsuario.setText("Crear Usuario");
+        btnRegistrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarUsuarioActionPerformed(evt);
+            }
+        });
+        jMenu1.add(btnRegistrarUsuario);
 
-        jMenuItem3.setText("Actualizar Contraseña");
-        jMenu1.add(jMenuItem3);
+        btnActualizarContrasena.setText("Actualizar Contraseña");
+        btnActualizarContrasena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarContrasenaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(btnActualizarContrasena);
 
         jMenuBar1.add(jMenu1);
 
@@ -370,6 +383,15 @@ public class Principal extends javax.swing.JFrame {
         CentrarVentana(actualizarMatPrima);
     }//GEN-LAST:event_btnActualizarMatPrimaActionPerformed
 
+    private void btnRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarUsuarioActionPerformed
+        CentrarVentana(crearUsuario);
+    }//GEN-LAST:event_btnRegistrarUsuarioActionPerformed
+
+    private void btnActualizarContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarContrasenaActionPerformed
+
+        CentrarVentana(actualizarContrasena);
+    }//GEN-LAST:event_btnActualizarContrasenaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -399,6 +421,8 @@ public class Principal extends javax.swing.JFrame {
         actualizarCliente.setVisible(false);
         actualizarMatPrima.setVisible(false);
         actualizarProducto.setVisible(false);
+        crearUsuario.setVisible(false);
+        actualizarContrasena.setVisible(false);
        
     }
 
@@ -438,6 +462,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem BtnConsultarMatPrima;
     private javax.swing.JMenuItem BtnConsultarProductos;
     private javax.swing.JMenu Productos;
+    private javax.swing.JMenuItem btnActualizarContrasena;
     private javax.swing.JMenuItem btnActualizarMatPrima;
     private javax.swing.JMenuItem btnActualizarProducto;
     private javax.swing.JMenuItem btnAnularFactura;
@@ -448,13 +473,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu btnConsultarVenta;
     private javax.swing.JMenuItem btnGananciaDiaria;
     private javax.swing.JMenuItem btnGenerarFactura;
+    private javax.swing.JMenuItem btnRegistrarUsuario;
     private javax.swing.JMenuItem btnRegistrarVenta;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItemRegistrarCliente;
     private javax.swing.JMenuItem jMenuItemRegistrarMatPrima;
