@@ -35,7 +35,7 @@ public class Principal extends javax.swing.JFrame {
 
     public Principal() {
         initComponents();
-        this.setExtendedState(MAXIMIZED_BOTH);
+        //this.setExtendedState(MAXIMIZED_BOTH);
         ventanaPrincipal.add(rc);
         ventanaPrincipal.add(rp);
         ventanaPrincipal.add(rmp);
