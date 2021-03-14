@@ -44,7 +44,19 @@ public class FrameRegistrarVenta extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Codigo Producto: ");
 
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
+
         jLabel3.setText("Cantidad: ");
+
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField2KeyReleased(evt);
+            }
+        });
 
         jLabel5.setText("Fecha: ");
 
@@ -62,6 +74,12 @@ public class FrameRegistrarVenta extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Registrar Venta");
+
+        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField4KeyReleased(evt);
+            }
+        });
 
         jButton2.setText("Añadir");
 
@@ -133,6 +151,56 @@ public class FrameRegistrarVenta extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            Pattern pat = Pattern.compile("(0?[1-9]|[12][0-9]|3[01])-(0?[1-9]|1[012])-((18|19|20|21)\\d\\d)");
+            Matcher mat = pat.matcher(this.jTEmailReg.getText());
+            if(mat.matches()){
+                this.jBRegistrar.requestFocus();
+                JOptionPane.showMessageDialog(null, "Fecha correcta");
+                this.jTTelefonoReg.requestFocus();
+            }else{
+                JOptionPane.showErrorDialog(null, "Fecha incorrecta -"
+                        + " vuelva a intentar");
+                this.jTTelefonoReg.requestFocus();
+            }
+        }        
+    }//GEN-LAST:event_jTextField4KeyReleased
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+       if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            Pattern pat = Pattern.compile("[0-9]{4}");
+            Matcher mat = pat.matcher(this.jTEmailReg.getText());
+            if(mat.matches()){
+                this.jBRegistrar.requestFocus();
+                JOptionPane.showMessageDialog(null, "Producto registrado");
+                this.jTTelefonoReg.requestFocus();
+            }else{
+                JOptionPane.showErrorDialog(null, "Producto no registrado -"
+                        + " vuelva a intentar");
+                this.jTTelefonoReg.requestFocus();
+            }
+        } 
+        
+    }//GEN-LAST:event_jTextField1KeyReleased
+
+    private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            Pattern pat = Pattern.compile("[1-9]{4}");
+            Matcher mat = pat.matcher(this.jTEmailReg.getText());
+            if(mat.matches()){
+                this.jBRegistrar.requestFocus();
+                JOptionPane.showMessageDialog(null, "Cantidad correcta");
+                this.jTTelefonoReg.requestFocus();
+            }else{
+                JOptionPane.showErrorDialog(null, "Cantidad incorrecta -"
+                        + " vuelva a intentar");
+                this.jTTelefonoReg.requestFocus();
+            }
+        } 
+       
+    }//GEN-LAST:event_jTextField2KeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -149,16 +149,18 @@ public class ConsultarVenta extends javax.swing.JInternalFrame {
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
     if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            Pattern pat = Pattern.compile("^[a-z0-9!#$%&'+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'+/=?^_`{|}~-]+)@(?:[a-z0-9](?:[a-z0-9-][a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
-            Matcher mat = pat.matcher(this.jTEmailReg.getText());
+            Pattern pat = Pattern.compile("[0-9]{4}");
+            Matcher mat = pat.matcher(this.jTEmailReg[0-9]{4}");.getText());
             if(mat.matches()){
                 this.jBRegistrar.requestFocus();
+                JOptionPane.showMessageDialog(null, "Código correcto");
+                this.jTTelefonoReg.requestFocus();
             }else{
-                JOptionPane.showMessageDialog(null, "Datos incorrectos,"
-                        + " por favor verifiquelos e intente ingresar de nuevo");
+                JOptionPane.showErrorDialog(null, "Código incorrecto -"
+                        + " vuelva a intentar");
                 this.jTTelefonoReg.requestFocus();
             }
-        }        // TODO add your handling code here:
+        }        
     }//GEN-LAST:event_jTextField1KeyReleased
 
 
