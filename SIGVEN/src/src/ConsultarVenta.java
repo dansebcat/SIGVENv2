@@ -73,6 +73,11 @@ public class ConsultarVenta extends javax.swing.JInternalFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
 
         jButton1.setText("Consultar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -141,6 +146,20 @@ public class ConsultarVenta extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+    if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            Pattern pat = Pattern.compile("^[a-z0-9!#$%&'+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'+/=?^_`{|}~-]+)@(?:[a-z0-9](?:[a-z0-9-][a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
+            Matcher mat = pat.matcher(this.jTEmailReg.getText());
+            if(mat.matches()){
+                this.jBRegistrar.requestFocus();
+            }else{
+                JOptionPane.showMessageDialog(null, "Datos incorrectos,"
+                        + " por favor verifiquelos e intente ingresar de nuevo");
+                this.jTTelefonoReg.requestFocus();
+            }
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1KeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

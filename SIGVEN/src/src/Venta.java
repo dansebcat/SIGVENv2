@@ -11,4 +11,12 @@ package src;
  */
 public class Venta {
     
+    String fecha; 
+    String codProducto;
+    int codVenta;
+    int cantidad;
+    
+    
+    
+    
 }
