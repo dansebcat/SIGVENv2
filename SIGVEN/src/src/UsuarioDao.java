@@ -23,7 +23,7 @@ public class UsuarioDao {
 
     public EtnidadUsuario validarUsuario(String user, String pass) {
         EtnidadUsuario usuario = new EtnidadUsuario();
-        String sql = " select * from user where Codigo_Usuario=? and Password=?";
+        String sql = " select * from usuario where codusuario=? and Password=?";
         try {
             acceso = con.Conectar();
             ps = (PreparedStatement) acceso.prepareStatement(sql);
@@ -44,7 +44,7 @@ public class UsuarioDao {
         ps = null;
         rs = null;
         EtnidadUsuario usuario = new EtnidadUsuario();
-        String sql = "INSERT INTO `user` (`Codigo_Usuario`, `Password`) VALUES (?,?)";
+        String sql = "INSERT INTO `usuario` (`codusuario`, `Password`) VALUES (?,?)";
         try {
             acceso = con.Conectar();
             ps = (PreparedStatement) acceso.prepareStatement(sql);
@@ -62,7 +62,7 @@ public class UsuarioDao {
     public boolean existeUsuario(String user) {
         ps = null;
         rs = null;
-        String sql = "select * from user where Codigo_Usuario=?";
+        String sql = "select * from usuario where codusuario=?";
         try {
            acceso=con.Conectar();
            ps=(PreparedStatement) acceso.prepareStatement(sql);

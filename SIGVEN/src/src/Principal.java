@@ -318,6 +318,7 @@ public class Principal extends javax.swing.JFrame {
     private void menuItemRegistrarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRegistrarProductoActionPerformed
 
         CentrarVentana(rp);
+        
 
     }//GEN-LAST:event_menuItemRegistrarProductoActionPerformed
 

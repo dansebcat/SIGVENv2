@@ -20,6 +20,28 @@ public class ClienteDao  implements CRUD{
     Conexion cn = new Conexion();
     PreparedStatement ps;
     ResultSet rs;
+    
+    public  Cliente consultarCliente(String ci){
+        Cliente c = new Cliente();
+        String sql ="select * from cliente where ci=?";
+        try {
+            con= cn.Conectar();
+            ps = con.prepareStatement(sql);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                c.ci=rs.getString(1);
+                c.nombres= rs.getString(2);
+                c.apellidos=rs.getString(3);
+                c.domicilio = rs.getString(4);
+                c.numero=rs.getInt(5);
+                c.email=rs.getString(6);
+                c.estado = rs.getBoolean(7);
+                
+            }
+        } catch (Exception e) {
+        }
+        return c;
+    }
 
     @Override
     public List listar() {

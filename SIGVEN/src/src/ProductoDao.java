@@ -8,8 +8,10 @@ package src;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,11 +22,67 @@ public class ProductoDao implements CRUD{
     Conexion cn = new Conexion();
     PreparedStatement ps;
     ResultSet rs;
-
+    
+public Producto consultar (String nombre){
+    Producto p = new Producto();
+  String sql = "select * from producto where nombres=?";
+   try {
+        con = cn.Conectar();
+        ps = con.prepareStatement(sql);
+        ps.setString(1, nombre);
+        rs=ps.executeQuery();
+        while(rs.next()){
+            p.codproducto=rs.getInt(1);
+                p.nombre= rs.getString(2);
+                 p.tipo = rs.getString(3);
+                p.precio=rs.getDouble(4);
+            
+        }
+    } catch (Exception e) {
+    }
+    return p;
+  
+} 
+public Producto consultar (int codproducto){
+    Producto p = new Producto();
+  String sql = "select * from producto where codproducto=?";
+   try {
+        con = cn.Conectar();
+        ps = con.prepareStatement(sql);
+        ps.setInt(1, codproducto);
+        rs=ps.executeQuery();
+        while(rs.next()){
+            p.codproducto=rs.getInt(1);
+                p.nombre= rs.getString(2);
+                 p.tipo = rs.getString(3);
+                p.precio=rs.getDouble(4);
+            
+        }
+    } catch (Exception e) {
+    }
+    return p;
+  
+}  
+public boolean existeProducto(String nombre){
+    String sql = "select * from producto where nombres=?";
+    try {
+        con = cn.Conectar();
+        ps = con.prepareStatement(sql);
+        ps.setString(1, nombre);
+        rs=ps.executeQuery();
+        if(rs.next()){
+            return true;
+        }else{
+            return false;
+        }
+    } catch (Exception e) {
+    }
+    return false;
+}
     @Override
     public List listar() {
         List <Producto> lista = new ArrayList<>();
-        String sql = " select * from producto";
+        String sql ="select * from producto";
         try {
             con= cn.Conectar();
             ps = con.prepareStatement(sql);
@@ -33,13 +91,15 @@ public class ProductoDao implements CRUD{
                 Producto p = new Producto();
                 p.codproducto=rs.getInt(1);
                 p.nombre= rs.getString(2);
-                p.precio=rs.getDouble(3);
-                p.tipo = rs.getString(4);
-               lista.add(p);
-                
-                
+                 p.tipo = rs.getString(3);
+                p.precio=rs.getDouble(4);
+              
+               lista.add(p);    
             }
-        } catch (Exception e) {
+        } catch (SQLException s) {
+            JOptionPane.showMessageDialog(null,s);
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"otro error");
         }
         return lista;
     }
@@ -47,16 +107,18 @@ public class ProductoDao implements CRUD{
     @Override
     public int add(Object[] o) {
          int r=0;
-      String sql = "insert into producto(codproducto,nombre,precio,tipo) values (?,?,?,?)";
+      String sql = "insert into producto(nombres,tipo,precio) values (?,?,?)";
         try {
             con = cn.Conectar();
             ps = con.prepareStatement(sql);
             ps.setObject(1, o[0]);
             ps.setObject(2, o[1]);
             ps.setObject(3, o[2]);
-            ps.setObject(4, o[3]);
             r = ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }catch (Exception s){
+              JOptionPane.showMessageDialog(null, "Error" + s);
         }
         return r;
     }

@@ -1,14 +1,19 @@
-
 package src;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 public class FrameConsultarProducto extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form FrameConsultar
-     */
+    Producto p = new Producto();
+    ProductoDao dao = new ProductoDao();
+    DefaultTableModel modelo;
+
     public FrameConsultarProducto() {
         initComponents();
+        txtCodigo.setEnabled(false);
+        txtNombre.setEnabled(false);
+
     }
 
     /**
@@ -23,14 +28,14 @@ public class FrameConsultarProducto extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtCodigo = new javax.swing.JTextField();
+        btnConsultar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaProducto = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbCodigoNombre = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
@@ -42,14 +47,20 @@ public class FrameConsultarProducto extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Código : ");
 
-        jButton1.setText("Consultar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                txtCodigoActionPerformed(evt);
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
+
+        tablaProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -60,13 +71,18 @@ public class FrameConsultarProducto extends javax.swing.JInternalFrame {
                 "Código", "Nombre", "Tipo", "Precio"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaProducto);
 
         jLabel2.setText("Nombre: ");
 
         jLabel3.setText("Consultar Producto");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Nombre" }));
+        cmbCodigoNombre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Nombre" }));
+        cmbCodigoNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCodigoNombreActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Consultar mediante:");
 
@@ -81,7 +97,7 @@ public class FrameConsultarProducto extends javax.swing.JInternalFrame {
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(196, 196, 196)
-                        .addComponent(jButton1)))
+                        .addComponent(btnConsultar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -93,12 +109,12 @@ public class FrameConsultarProducto extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbCodigoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(63, 63, 63))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
@@ -115,18 +131,18 @@ public class FrameConsultarProducto extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cmbCodigoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnConsultar)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
@@ -135,14 +151,80 @@ public class FrameConsultarProducto extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        //FALTA VALIDAR CAMPOS
+        
+        limpiarTabla();
+        int opcion = cmbCodigoNombre.getSelectedIndex();
+   
+        switch (opcion) {
+            case 0: {
+                int codproducto = Integer.parseInt(txtCodigo.getText());
+                p = dao.consultar(codproducto);
+                modelo = new DefaultTableModel();
+ 
+                modelo = (DefaultTableModel) tablaProducto.getModel();
+                Object[] ob = new Object[4];
+                ob[0] = p.codproducto;
+                ob[1] = p.nombre;
+                ob[2] = p.tipo;
+                ob[3] = p.precio;
+                modelo.addRow(ob);
+                tablaProducto.setModel(modelo);
+                break;
+            }
+            case 1: {
+                  String nombre = (txtNombre.getText());
+                p = dao.consultar(nombre);
+                modelo = new DefaultTableModel();
+
+                modelo = (DefaultTableModel) tablaProducto.getModel();
+                Object[] ob = new Object[4];
+                ob[0] = p.codproducto;
+                ob[1] = p.nombre;
+                ob[2] = p.tipo;
+                ob[3] = p.precio;
+                modelo.addRow(ob);
+                tablaProducto.setModel(modelo);
+                break;
+            }
+        }
+
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
+    
+    public void limpiarTabla() {
+        DefaultTableModel tb = (DefaultTableModel) tablaProducto.getModel();
+        int a = tablaProducto.getRowCount() - 1;
+        for (int i = a; i >= 0; i--) {
+            tb.removeRow(tb.getRowCount() - 1);
+        }
+        //cargaTicket();
+    }
+    private void cmbCodigoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCodigoNombreActionPerformed
+        int opcion = cmbCodigoNombre.getSelectedIndex();
+        switch (opcion) {
+            case 0: {
+                txtCodigo.setEnabled(true);
+                txtNombre.setEnabled(false);
+                break;
+            }
+            case 1: {
+                txtCodigo.setEnabled(false);
+                txtNombre.setEnabled(true);
+                break;
+            }
+        }
+    }//GEN-LAST:event_cmbCodigoNombreActionPerformed
+
+    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_txtCodigoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton btnConsultar;
+    private javax.swing.JComboBox<String> cmbCodigoNombre;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -150,8 +232,8 @@ public class FrameConsultarProducto extends javax.swing.JInternalFrame {
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTable tablaProducto;
+    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

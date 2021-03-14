@@ -15,11 +15,15 @@ public class Login extends javax.swing.JFrame {
 
     EtnidadUsuario etnidadUsuario = new EtnidadUsuario();
     UsuarioDao usuarioDao = new UsuarioDao();
+    
 
     public Login() {
+        
 
         initComponents();
         this.setLocationRelativeTo(null);
+        txtUsuario.setText("root");
+        txtPassword.setText("root");
     }
 
     /**
