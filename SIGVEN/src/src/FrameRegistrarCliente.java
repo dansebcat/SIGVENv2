@@ -8,6 +8,7 @@ package src;
 import java.awt.event.KeyEvent;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,7 +40,7 @@ public class FrameRegistrarCliente extends javax.swing.JInternalFrame {
         jTApellidoReg = new javax.swing.JTextField();
         jTTelefonoReg = new javax.swing.JTextField();
         jTCIReg = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jBRegistrar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jTEmailReg = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -48,7 +49,7 @@ public class FrameRegistrarCliente extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jTDireccionReg = new javax.swing.JTextField();
 
-        jLabel1.setText("Nombre: ");
+        jLabel1.setText("Nombres: ");
 
         jLabel2.setText("Apellido:");
 
@@ -61,16 +62,31 @@ public class FrameRegistrarCliente extends javax.swing.JInternalFrame {
                 jTNombreRegActionPerformed(evt);
             }
         });
+        jTNombreReg.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTNombreRegKeyReleased(evt);
+            }
+        });
 
         jTApellidoReg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTApellidoRegActionPerformed(evt);
             }
         });
+        jTApellidoReg.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTApellidoRegKeyReleased(evt);
+            }
+        });
 
         jTTelefonoReg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTTelefonoRegActionPerformed(evt);
+            }
+        });
+        jTTelefonoReg.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTTelefonoRegKeyReleased(evt);
             }
         });
 
@@ -85,14 +101,20 @@ public class FrameRegistrarCliente extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setText("Registrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBRegistrar.setText("Registrar");
+        jBRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBRegistrarActionPerformed(evt);
             }
         });
 
         jLabel5.setText("Email:");
+
+        jTEmailReg.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTEmailRegKeyReleased(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -117,6 +139,11 @@ public class FrameRegistrarCliente extends javax.swing.JInternalFrame {
                 jTDireccionRegActionPerformed(evt);
             }
         });
+        jTDireccionReg.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTDireccionRegKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -124,7 +151,7 @@ public class FrameRegistrarCliente extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(jBRegistrar)
                 .addGap(190, 190, 190))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,7 +211,7 @@ public class FrameRegistrarCliente extends javax.swing.JInternalFrame {
                     .addComponent(jLabel5)
                     .addComponent(jTEmailReg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
-                .addComponent(jButton1)
+                .addComponent(jBRegistrar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
@@ -209,9 +236,9 @@ public class FrameRegistrarCliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTCIRegActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBRegistrarActionPerformed
 
     private void jTDireccionRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTDireccionRegActionPerformed
         // TODO add your handling code here:
@@ -221,12 +248,89 @@ public class FrameRegistrarCliente extends javax.swing.JInternalFrame {
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             Pattern pat = Pattern.compile("^[0-2]{1}[0-9]{9}");
             Matcher mat = pat.matcher(this.jTCIReg.getText());
+            if(mat.matches()){
+                this.jTNombreReg.requestFocus();
+            }else{
+                JOptionPane.showMessageDialog(null, "Cédula incorrecta,"
+                        + " por favor ingrese una cédula válida");
+                this.jTCIReg.requestFocus();
+            }
         }
     }//GEN-LAST:event_jTCIRegKeyReleased
 
+    private void jTNombreRegKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTNombreRegKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            Pattern pat = Pattern.compile("[A-Za-z\\s]{20}");
+            Matcher mat = pat.matcher(this.jTNombreReg.getText());
+            if(mat.matches()){
+                this.jTApellidoReg.requestFocus();
+            }else{
+                JOptionPane.showMessageDialog(null, "Datos incorrectos,"
+                        + " por favor verifiquelos e intente ingresar de nuevo");
+                this.jTNombreReg.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_jTNombreRegKeyReleased
+
+    private void jTApellidoRegKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTApellidoRegKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            Pattern pat = Pattern.compile("[A-Za-z\\s]{20}");
+            Matcher mat = pat.matcher(this.jTApellidoReg.getText());
+            if(mat.matches()){
+                this.jTDireccionReg.requestFocus();
+            }else{
+                JOptionPane.showMessageDialog(null, "Datos incorrectos,"
+                        + " por favor verifiquelos e intente ingresar de nuevo");
+                this.jTApellidoReg.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_jTApellidoRegKeyReleased
+
+    private void jTDireccionRegKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTDireccionRegKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            Pattern pat = Pattern.compile("[A-Za-z\\s]{50}");
+            Matcher mat = pat.matcher(this.jTDireccionReg.getText());
+            if(mat.matches()){
+                this.jTTelefonoReg.requestFocus();
+            }else{
+                JOptionPane.showMessageDialog(null, "Datos incorrectos,"
+                        + " por favor verifiquelos e intente ingresar de nuevo");
+                this.jTDireccionReg.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_jTDireccionRegKeyReleased
+
+    private void jTTelefonoRegKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTTelefonoRegKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            Pattern pat = Pattern.compile("^[0]{1}[2-7]{1}[0-9]{7}");
+            Matcher mat = pat.matcher(this.jTTelefonoReg.getText());
+            if(mat.matches()){
+                this.jTEmailReg.requestFocus();
+            }else{
+                JOptionPane.showMessageDialog(null, "Datos incorrectos,"
+                        + " por favor verifiquelos e intente ingresar de nuevo");
+                this.jTTelefonoReg.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_jTTelefonoRegKeyReleased
+
+    private void jTEmailRegKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTEmailRegKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            Pattern pat = Pattern.compile("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
+            Matcher mat = pat.matcher(this.jTEmailReg.getText());
+            if(mat.matches()){
+                this.jBRegistrar.requestFocus();
+            }else{
+                JOptionPane.showMessageDialog(null, "Datos incorrectos,"
+                        + " por favor verifiquelos e intente ingresar de nuevo");
+                this.jTTelefonoReg.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_jTEmailRegKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jBRegistrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
