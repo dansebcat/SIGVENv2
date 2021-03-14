@@ -5,6 +5,11 @@
  */
 package src;
 
+import java.awt.event.KeyEvent;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author danie
@@ -55,11 +60,22 @@ public class FrameActualizarCliente extends javax.swing.JInternalFrame {
 
         jLabel2.setText("CI: ");
 
+        jTCedulaAc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTCedulaAcKeyReleased(evt);
+            }
+        });
+
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jTDireccionAc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTDireccionAcActionPerformed(evt);
+            }
+        });
+        jTDireccionAc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTDireccionAcKeyReleased(evt);
             }
         });
 
@@ -68,8 +84,19 @@ public class FrameActualizarCliente extends javax.swing.JInternalFrame {
                 jTTelefonoAcActionPerformed(evt);
             }
         });
+        jTTelefonoAc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTTelefonoAcKeyReleased(evt);
+            }
+        });
 
         jLabel5.setText("Email:");
+
+        jTEmailAc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTEmailAcKeyReleased(evt);
+            }
+        });
 
         jLabel4.setText("Teléfono:");
 
@@ -77,7 +104,19 @@ public class FrameActualizarCliente extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Nombres:");
 
+        jTNombreAc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTNombreAcKeyReleased(evt);
+            }
+        });
+
         jLabel6.setText("Apellidos: ");
+
+        jTApellidosAc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTApellidosAcKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -229,6 +268,90 @@ public class FrameActualizarCliente extends javax.swing.JInternalFrame {
     private void jBActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBActualizarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBActualizarActionPerformed
+
+    private void jTCedulaAcKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCedulaAcKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            Pattern pat = Pattern.compile("^[0-2]{1}[0-9]{9}");
+            Matcher mat = pat.matcher(this.jTCedulaAc.getText());
+            if(mat.matches()){
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "Cédula incorrecta,"
+                        + " por favor ingrese una cédula válida");
+                this.jTCedulaAc.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_jTCedulaAcKeyReleased
+
+    private void jTNombreAcKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTNombreAcKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            Pattern pat = Pattern.compile("[A-Za-z\\s]{20}");
+            Matcher mat = pat.matcher(this.jTNombreAc.getText());
+            if(mat.matches()){
+                this.jTApellidosAc.requestFocus();
+            }else{
+                JOptionPane.showMessageDialog(null, "Datos incorrectos,"
+                        + " por favor verifiquelos e intente ingresar de nuevo");
+                this.jTNombreAc.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_jTNombreAcKeyReleased
+
+    private void jTApellidosAcKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTApellidosAcKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            Pattern pat = Pattern.compile("[A-Za-z\\s]{20}");
+            Matcher mat = pat.matcher(this.jTApellidosAc.getText());
+            if(mat.matches()){
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "Datos incorrectos,"
+                        + " por favor verifiquelos e intente ingresar de nuevo");
+                this.jTApellidosAc.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_jTApellidosAcKeyReleased
+
+    private void jTDireccionAcKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTDireccionAcKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            Pattern pat = Pattern.compile("[A-Za-z\\s]{50}");
+            Matcher mat = pat.matcher(this.jTDireccionAc.getText());
+            if(mat.matches()){
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "Datos incorrectos,"
+                        + " por favor verifiquelos e intente ingresar de nuevo");
+                this.jTDireccionAc.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_jTDireccionAcKeyReleased
+
+    private void jTTelefonoAcKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTTelefonoAcKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            Pattern pat = Pattern.compile("^[0]{1}[2-7]{1}[0-9]{7}");
+            Matcher mat = pat.matcher(this.jTTelefonoAc.getText());
+            if(mat.matches()){
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "Datos incorrectos,"
+                        + " por favor verifiquelos e intente ingresar de nuevo");
+                this.jTTelefonoAc.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_jTTelefonoAcKeyReleased
+
+    private void jTEmailAcKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTEmailAcKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            Pattern pat = Pattern.compile("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
+            Matcher mat = pat.matcher(this.jTEmailAc.getText());
+            if(mat.matches()){
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "Datos incorrectos,"
+                        + " por favor verifiquelos e intente ingresar de nuevo");
+                this.jTTelefonoAc.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_jTEmailAcKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
