@@ -34,7 +34,7 @@ public class ConsultarVenta extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jBConsultar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
 
@@ -79,10 +79,10 @@ public class ConsultarVenta extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setText("Consultar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBConsultar.setText("Consultar");
+        jBConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBConsultarActionPerformed(evt);
             }
         });
 
@@ -117,7 +117,7 @@ public class ConsultarVenta extends javax.swing.JInternalFrame {
                             .addComponent(jLabel1))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(228, 228, 228)
-                            .addComponent(jButton1))))
+                            .addComponent(jBConsultar))))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -130,7 +130,7 @@ public class ConsultarVenta extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
-                .addComponent(jButton1)
+                .addComponent(jBConsultar)
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(41, Short.MAX_VALUE))
@@ -143,29 +143,29 @@ public class ConsultarVenta extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConsultarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBConsultarActionPerformed
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
     if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             Pattern pat = Pattern.compile("[0-9]{4}");
-            Matcher mat = pat.matcher(this.jTEmailReg[0-9]{4}");.getText());
+            Matcher mat = pat.matcher(jTextField1.getText());
             if(mat.matches()){
-                this.jBRegistrar.requestFocus();
+                this.jButton1.requestFocus();
                 JOptionPane.showMessageDialog(null, "Código correcto");
-                this.jTTelefonoReg.requestFocus();
+                this.jBConsultar.requestFocus();
             }else{
                 JOptionPane.showErrorDialog(null, "Código incorrecto -"
                         + " vuelva a intentar");
-                this.jTTelefonoReg.requestFocus();
+                this.jTextField1.requestFocus();
             }
         }        
     }//GEN-LAST:event_jTextField1KeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jBConsultar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

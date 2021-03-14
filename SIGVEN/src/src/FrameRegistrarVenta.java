@@ -155,15 +155,15 @@ public class FrameRegistrarVenta extends javax.swing.JInternalFrame {
     private void jTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyReleased
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             Pattern pat = Pattern.compile("(0?[1-9]|[12][0-9]|3[01])-(0?[1-9]|1[012])-((18|19|20|21)\\d\\d)");
-            Matcher mat = pat.matcher(this.jTEmailReg.getText());
+            Matcher mat = pat.matcher(this.jTextField4.getText());
             if(mat.matches()){
-                this.jBRegistrar.requestFocus();
+                this.jButton2.requestFocus();
                 JOptionPane.showMessageDialog(null, "Fecha correcta");
-                this.jTTelefonoReg.requestFocus();
+                this.TextField1.requestFocus();
             }else{
                 JOptionPane.showErrorDialog(null, "Fecha incorrecta -"
                         + " vuelva a intentar");
-                this.jTTelefonoReg.requestFocus();
+                this.jTextField4.requestFocus();
             }
         }        
     }//GEN-LAST:event_jTextField4KeyReleased
@@ -171,15 +171,15 @@ public class FrameRegistrarVenta extends javax.swing.JInternalFrame {
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             Pattern pat = Pattern.compile("[0-9]{4}");
-            Matcher mat = pat.matcher(this.jTEmailReg.getText());
+            Matcher mat = pat.matcher(this.jTextField1.getText());
             if(mat.matches()){
-                this.jBRegistrar.requestFocus();
+                this.jButton2.requestFocus();
                 JOptionPane.showMessageDialog(null, "Producto registrado");
-                this.jTTelefonoReg.requestFocus();
+                this.jTextField2.requestFocus();
             }else{
                 JOptionPane.showErrorDialog(null, "Producto no registrado -"
                         + " vuelva a intentar");
-                this.jTTelefonoReg.requestFocus();
+                this.jTextField1.requestFocus();
             }
         } 
         
@@ -188,15 +188,14 @@ public class FrameRegistrarVenta extends javax.swing.JInternalFrame {
     private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             Pattern pat = Pattern.compile("[1-9]{4}");
-            Matcher mat = pat.matcher(this.jTEmailReg.getText());
+            Matcher mat = pat.matcher(this.jTextField2.getText());
             if(mat.matches()){
-                this.jBRegistrar.requestFocus();
+                this.jButton2.requestFocus();
                 JOptionPane.showMessageDialog(null, "Cantidad correcta");
-                this.jTTelefonoReg.requestFocus();
             }else{
                 JOptionPane.showErrorDialog(null, "Cantidad incorrecta -"
                         + " vuelva a intentar");
-                this.jTTelefonoReg.requestFocus();
+                this.jTextField2.requestFocus();
             }
         } 
        
